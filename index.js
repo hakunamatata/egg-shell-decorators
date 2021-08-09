@@ -27,7 +27,6 @@ const EggShell = app => {
     const rootPath = 'controller/';
     prefix = prefix || fullPath.substring(fullPath.indexOf(rootPath) + rootPath.length);
     prefix = prefix.startsWith('/') ? prefix : '/' + prefix;
-    if (reqMethod && path) {
       for (const pName of propertyNames) {
         // 解析函数元数据
         const { reqMethod, path, middlewares } = methodHandler.getMetada(c[pName]);
@@ -42,7 +41,6 @@ const EggShell = app => {
         };
         router[reqMethod](prefix + path, ...middlewares, routerCb);
         }
-      }
     }
   }
 };
