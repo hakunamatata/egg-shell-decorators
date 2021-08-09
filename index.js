@@ -31,7 +31,7 @@ const EggShell = app => {
       for (const pName of propertyNames) {
         // 解析函数元数据
         const { reqMethod, path, middlewares } = methodHandler.getMetada(c[pName]);
-
+        if(reqMethod && path){
         const routerCb = async ctx => {
           const instance = new c.constructor(ctx);
           try {
@@ -41,6 +41,7 @@ const EggShell = app => {
           }
         };
         router[reqMethod](prefix + path, ...middlewares, routerCb);
+        }
       }
     }
   }
